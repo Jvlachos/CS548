@@ -16,7 +16,7 @@ jobs:
 
     - name: Build and Push Docker Image
       run: |
-        docker build -t Assignment_1/docker_files .
+        docker build -t dvlachos/ .
         docker tag ${{ secrets.DOCKERHUB_USERNAME }}/action_nginx:latest ${{ secrets.DOCKERHUB_USERNAME }}/action_nginx:1.0
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/action_nginx:latest
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/action_nginx:1.0
