@@ -74,3 +74,8 @@ b.-**_docker tag mynginx:latest dvlachos/mynginx_**
 c.My image is 1.08GB while the image that i based it on is 187MB .This is expected because i installed git,hugo and make .Other dependencies were also installed automatically from the packet manager making the image larger.
 
 d.I used the **_rm -rf /var/lib/apt/lists/\*_** command inside the docker file in order to clear the temporary files of the packet manager(apt).
+
+5. 
+![image](https://github.com/Jvlachos/CS548/blob/main/Assignment_1/Images/5.png)
+
+The yaml file is in Assignment_1/yaml 
