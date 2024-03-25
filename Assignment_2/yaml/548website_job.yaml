@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: website-548
+spec:
+  template:
+    spec:
+      containers:
+      - name: ubuntu
+        image: ubuntu:20.04
+        command: ["./etc/build-site.sh"]
+        volumeMounts:
+          - name: script
+            mountPath: "/etc/build-site.sh"
+            subPath: build-site.sh
+      restartPolicy: Never
+      volumes:
+        - name: script
+          configMap:
+            name: website-config
+            defaultMode: 0500

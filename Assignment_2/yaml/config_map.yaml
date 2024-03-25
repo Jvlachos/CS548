@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: website-config
+data:
+  build-site.sh: |
+    #!/bin/bash
+    apt-get update && apt-get install -y git && \
+    apt-get install -y make && \
+    git clone https://github.com/chazapis/hy548.git && \
+    apt-get install -y curl && \
+    curl -LO https://github.com/gohugoio/hugo/releases/download/v0.94.0/hugo_extended_0.94.0_Linux-64bit.tar.gz && \
+    tar -xf hugo_extended_0.94.0_Linux-64bit.tar.gz && \
+    mv hugo /usr/local/bin/ && \
+    cd hy548 && \
+    git submodule init && \
+    git submodule update && \
+    make all
+
+
