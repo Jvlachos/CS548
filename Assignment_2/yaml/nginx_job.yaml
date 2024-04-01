@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: website-548-nginx
+spec:
+  template:
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.21.6
+        command: ["/bin/sh", "-c", "./etc/build-site.sh && cp hy548/html/public/index.html /website && ls /website"]
+        volumeMounts:
+        - name: script
+          mountPath: "/etc/build-site.sh"
+          subPath: build-site.sh
+        - name: website-volume
+          mountPath: /website
+      restartPolicy: Never
+      volumes:
+      - name: script
+        configMap:
+          name: website-config
+          defaultMode: 0500
+      - name: website-volume
+        emptyDir: {}

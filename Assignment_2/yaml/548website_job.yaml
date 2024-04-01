@@ -8,7 +8,7 @@ spec:
       containers:
       - name: ubuntu
         image: ubuntu:20.04
-        command: ["./etc/build-site.sh"]
+        command: ["/bin/sh", "-c", "./etc/build-site.sh"]
         volumeMounts:
           - name: script
             mountPath: "/etc/build-site.sh"
