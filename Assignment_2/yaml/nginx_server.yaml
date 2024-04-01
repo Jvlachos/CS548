@@ -56,6 +56,34 @@ spec:
            claimName: site-volume-claim
          
 ---
+
+apiVersion: batch/v1
+kind: CronJob
+metadata: 
+  name: refresh
+spec:
+  schedule: "15 2 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: ref-cont
+              image: ubuntu
+              command: ["/bin/bash","-c","cd /website && git pull origin master"]
+              volumeMounts:
+              - name: website-volume
+                mountPath: /website
+          restartPolicy: OnFailure
+          volumes:
+          - name: website-volume
+            persistentVolumeClaim:
+              claimName: site-volume-claim
+
+
+
+
+---
 apiVersion: v1
 kind: Pod
 metadata:
